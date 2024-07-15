@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using api.Interfaces;
 using api.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
@@ -36,6 +37,7 @@ namespace api.Controllers
         }
 
         [HttpPost("menu/create")]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] CreateMenuRequestDto menuDto)
         {
             if (!ModelState.IsValid) { return BadRequest(ModelState); };
@@ -45,6 +47,7 @@ namespace api.Controllers
         }
 
         [HttpPut("menu/{id:int}")]
+        [Authorize]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateMenuRequestDto updateDto)
         {
             if (!ModelState.IsValid) { return BadRequest(ModelState); };
@@ -53,6 +56,7 @@ namespace api.Controllers
         }
 
         [HttpDelete("menu/{id:int}")]
+        [Authorize]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             if (!ModelState.IsValid) { return BadRequest(ModelState); };

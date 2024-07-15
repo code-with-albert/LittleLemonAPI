@@ -60,7 +60,10 @@ namespace api.Repository
             {
                 specialMenus = specialMenus.Where(e => e.Menu.Discounted.Equals(query.Discounted));
             }
-            return await specialMenus.ToListAsync();
+
+            var skipNumber = (query.Page - 1) * 5;
+
+            return await specialMenus.Skip(skipNumber).Take(5).ToListAsync();
         }
 
         public async Task<SpecialsMenu?> GetByIdAsync(int id)

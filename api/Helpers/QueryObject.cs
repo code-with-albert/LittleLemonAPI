@@ -9,5 +9,6 @@ namespace api.Helpers
     {
         public bool? Available { get; set; } = null;
         public bool? Discounted { get; set; } = null;
+        public int Page { get; set; } = 1;
     }
 }

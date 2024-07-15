@@ -9,6 +9,7 @@ using api.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using api.Helpers;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
@@ -37,6 +38,7 @@ namespace api.Controllers
         }
 
         [HttpPost("specials-menu/create")]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] CreateSpecialsMenuRequestDto specialsMenuDto)
         {
             if (await _specialsMenuRepo.GetByMenuIdAsync(specialsMenuDto.MenuId) != null)
@@ -54,6 +56,7 @@ namespace api.Controllers
         }
 
         [HttpPut("specials-menu/{id:int}")]
+        [Authorize]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateSpecialsMenuRequestDto updateDto)
         {
             if (await _specialsMenuRepo.GetByMenuIdAsync(updateDto.MenuId) != null)
@@ -70,6 +73,7 @@ namespace api.Controllers
         }
 
         [HttpDelete("specials-menu/{id:int}")]
+        [Authorize]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             if (!ModelState.IsValid) { return BadRequest(ModelState); };

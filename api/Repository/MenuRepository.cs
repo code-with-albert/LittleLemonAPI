@@ -57,7 +57,9 @@ namespace api.Repository
                 menus = menus.Where(e => e.Discounted.Equals(query.Discounted));
             }
 
-            return await menus.ToListAsync();
+            var skipNumber = (query.Page - 1) * 5;
+
+            return await menus.Skip(skipNumber).Take(5).ToListAsync();
         }
 
         public async Task<Menu?> GetByIdAsync(int id)
