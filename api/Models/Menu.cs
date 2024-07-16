@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,8 +12,11 @@ namespace api.Models
     {
         public int Id { get; set; }
 
-        public required string Name { get; set; }
-        public required string Description { get; set; }
+        [Required]
+        public string Name { get; set; } = string.Empty;
+
+        [Required]
+        public string Description { get; set; } = string.Empty;
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
@@ -25,10 +29,13 @@ namespace api.Models
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Discount { get; set; } = 1;
+
         [Column(TypeName = "datetime")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+
         [Column(TypeName = "datetime")]
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
-        public SpecialsMenu? Special { get; set; }
+
+        public SpecialsMenu? Special { get; }
     }
 }

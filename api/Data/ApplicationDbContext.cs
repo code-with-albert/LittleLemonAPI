@@ -18,6 +18,8 @@ namespace api.Data
 
         public DbSet<Menu> Menus { get; set; }
         public DbSet<SpecialsMenu> SpecialsMenus { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<CommentReport> CommentReports { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
